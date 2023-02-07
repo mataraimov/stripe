@@ -14,6 +14,8 @@ def dashboard_with_pivot(request):
 
 def dashboard_with_pivot_vendors(request):
     return render(request, 'dashboard_vendor.html', {})
+def dashboard_with_pivot_orders(request):
+    return render(request, 'dashboard_vendor.html', {})
 
 
 def dashboard_with_pivot_customers(request):
@@ -28,6 +30,10 @@ def pivot_data(request):
 
 def pivot_data_vendor(request):
     dataset = Vendor.objects.all()
+    data = serializers.serialize('json', dataset)
+    return JsonResponse(data, safe=False)
+def pivot_data_vendor(request):
+    dataset = Order.objects.all()
     data = serializers.serialize('json', dataset)
     return JsonResponse(data, safe=False)
 

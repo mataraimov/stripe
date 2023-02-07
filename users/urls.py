@@ -6,7 +6,7 @@ from .views import (
     CustomerListAPIView,
     LoginView,
     VendorDetailAPIView,
-    CustomerDetailAPIView, VendorProfileAPIView, CustomerProfileAPIView,
+    CustomerDetailAPIView, VendorProfileAPIView, CustomerProfileAPIView, UserFilterAPIView,
 )
 
 urlpatterns = [
@@ -19,4 +19,5 @@ urlpatterns = [
     path('vendor/<int:id>/', VendorDetailAPIView.as_view(), name='vendor-detail'),
     path('vendor/profile/<str:token>/', VendorProfileAPIView.as_view(), name='vendor-profile'),
     path('customer/profile/<str:token>/', CustomerProfileAPIView.as_view(), name='customer-profile'),
+    path('filter/', UserFilterAPIView.as_view(), name='user-filter'),
 ]

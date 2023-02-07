@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.dashboard_with_pivot, name='dashboard_with_pivot'),
     path('vendors/', views.dashboard_with_pivot_vendors, name='dashboard_with_pivot_vendors'),
+    path('orders/', views.dashboard_with_pivot_orders, name='dashboard_with_pivot_orders'),
     path('customers/', views.dashboard_with_pivot_customers, name='dashboard_with_pivot_customers'),
     path('data/', views.pivot_data, name='pivot_data'),
     path('data_vendor/', views.pivot_data_vendor, name='pivot_data_vendor'),

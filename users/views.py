@@ -1,16 +1,18 @@
 import jwt
 from django.http import Http404
 from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.parsers import JSONParser
 from rest_framework_simplejwt import exceptions
 from rest_framework_simplejwt.views import TokenObtainPairView
-
+from rest_framework import filters
 from marketplace.settings import SECRET_KEY
 from .serializer import VendorSerializer, CustomerSerializer, MyTokenObtainPairSerializer
 from .models import Vendor, Customer
-from rest_framework import permissions, status
+from rest_framework import permissions, status, generics
 from .permissions import AnonPermission
 from product.models import Cart, Product
 from product.serializers import CartSerializer, ProductSerializer
@@ -260,4 +262,15 @@ class CustomerProfileAPIView(APIView):
         snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-
+class ProductAPIListPagination(PageNumberPagination):
+    page_size = 3
+    page_size_query_param = 'page_size'
+    max_page_size = 1000
+class UserFilterAPIView(generics.ListAPIView):
+    pagination_class = ProductAPIListPagination
+    permission_classes = [permissions.AllowAny]
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
+    filter_backends = [DjangoFilterBackend,filters.SearchFilter]
+    filterset_fields = ['name', 'cart_number']
+    search_fields = ['name', 'description']
