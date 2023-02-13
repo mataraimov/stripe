@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from rest_framework.schemas import get_schema_view
 
-from product.views import CancelView, SuccessView, CreateCheckoutSessionView,ProductLandingPageView
+from apps.product.views import CancelView, SuccessView, CreateCheckoutSessionView,ProductLandingPageView
 
 urlpatterns = [
     path('api_schema/', get_schema_view(title='API Schema'), name='schema_url'),
@@ -27,9 +27,9 @@ urlpatterns = [
         extra_context={'schema_url': 'openapi-schema'}
     ), name='swagger-ui'),
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),
-    path('product/', include('product.urls')),
-    path('dashboard/', include('dashboard.urls')),
+    path('users/', include('apps.users.urls')),
+    path('product/', include('apps.product.urls')),
+    path('dashboard/', include('apps.dashboard.urls')),
     path('cancel/', CancelView.as_view(), name='cancel'),
     path('landing/', ProductLandingPageView.as_view(), name='landing'),
     path('success/', SuccessView.as_view(), name='success'),

@@ -1,11 +1,9 @@
 import jwt
 from django.http import Http404
-from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.parsers import JSONParser
 from rest_framework_simplejwt import exceptions
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import filters
@@ -14,8 +12,8 @@ from .serializer import VendorSerializer, CustomerSerializer, MyTokenObtainPairS
 from .models import Vendor, Customer
 from rest_framework import permissions, status, generics
 from .permissions import AnonPermission
-from product.models import Cart, Product
-from product.serializers import CartSerializer, ProductSerializer
+from apps.product.models import Cart, Product
+from apps.product.serializers import CartSerializer, ProductSerializer
 
 
 class LoginView(TokenObtainPairView):

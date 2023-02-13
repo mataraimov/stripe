@@ -1,11 +1,10 @@
 from django.http import JsonResponse
 from django.shortcuts import render
-from dashboard.models import Order
+from apps.dashboard.models import Order
 from django.core import serializers
 
-from product.models import Product, Cart, Category
-from product.serializers import CartSerializer
-from users.models import Customer, Vendor, MyUser
+from apps.product.models import Product
+from apps.users.models import Customer, Vendor
 
 
 def dashboard_with_pivot(request):

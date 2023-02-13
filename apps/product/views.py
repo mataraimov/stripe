@@ -8,11 +8,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.db.models import Sum
 
-from dashboard.models import Order
+from apps.dashboard.models import Order
 from marketplace import settings
 from .serializers import ProductSerializer, CartSerializer
 from .models import Product, Cart
-from users.permissions import IsVendorPermission, IsOwnerOrReadOnly
+from apps.users.permissions import IsVendorPermission, IsOwnerOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from dashboard.models import Order
+from apps.dashboard.models import Order
 from .models import Category, Product, Cart
 
 admin.site.register(Category)
